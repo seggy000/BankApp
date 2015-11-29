@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Create Customer</title>
+               
+        <f:loadBundle basename="ch.hearc.ig.odi.messages.Messages" var="msg" />
+    </h:head>
+    
+    <h:body>
+
+        <h:form id="form">
+            
+            <h1><h:outputText value="#{msg.createcustomer}"/></h1>
+
+            <p>
+                <h:outputText value="#{msg.number}"/>
+                &nbsp;
+                <h:inputText value="#{customerCreateBean.number}" label="Number"
+                             size="30" required="true" requiredMessage="#{msg.numrequired}" />
+            </p>
+            
+            
+            <p>
+                <h:outputText value="#{msg.firstname}"/>
+                &nbsp;
+                <h:inputText value="#{customerCreateBean.firstname}" label="Firstname"
+                             size="50" required="true" requiredMessage="#{msg.firstnamerequired}" />
+            </p>
+            
+            
+            <p>
+                <h:outputText value="#{msg.lastname}"/>
+                &nbsp;
+                <h:inputText value="#{customerCreateBean.lastname}" label="Lastname"
+                             size="50" required="true" requiredMessage="#{msg.lastnamerequired}" />
+
+            </p>
+            
+            
+            <h:commandButton value="#{msg.validate}" type="submit" action="#{customerCreateBean.createCustomer()}"/>
+            <h:commandButton value="#{msg.init}" type="reset"/>
+            <h:messages errorStyle="color:red"/>
+            
+        </h:form>
+        
+        <h:button value="#{msg.cancel}" outcome="customerList"/>
+        
+    </h:body>
+    
+</html>

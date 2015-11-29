@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    
+    <navigation-rule>
+        <from-view-id>/createCustomer.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{customerCreateBean.createCustomer()}</from-action>
+            <from-outcome>0</from-outcome>
+            <to-view-id>/createCustomerSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/customerList.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{customerDetailsBean.initCustomer(cust.number)}</from-action>
+            <from-outcome>0</from-outcome>
+            <to-view-id>/customerDetails.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/customerDetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{accountDetailsBean.initAccount(acc.number)}</from-action>
+            <from-outcome>0</from-outcome>
+            <to-view-id>/accountDetails.xhtml</to-view-id>
+           <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/createAccount.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{accountCreateBean.createAccount()}</from-action>
+            <from-outcome>0</from-outcome>
+            <to-view-id>/createAccountSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <application>
+        <resource-bundle>
+            <base-name>
+                ch.hearc.ig.odi.message
+            </base-name>
+            <var>bundle</var>
+        </resource-bundle>
+
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>fr</supported-locale>
+        </locale-config>
+    </application>
+    
+    
+    <managed-bean>
+        <managed-bean-name>localeBean</managed-bean-name>
+        <managed-bean-class>ch.hearc.ig.odi.managedbeans.LocaleBean</managed-bean-class>  
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <managed-bean>
+        <description>Liste des utilisateurs</description>
+        <managed-bean-name>customersBean</managed-bean-name>
+        <managed-bean-class>ch.hearc.ig.odi.managedbeans.CustomersBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <managed-bean>
+        <description>Créer un nouvel utilisateur</description>
+        <managed-bean-name>customerCreateBean</managed-bean-name>
+        <managed-bean-class>ch.hearc.ig.odi.managedbeans.CustomerCreateBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <managed-bean>
+        <description>Détails du client</description>
+        <managed-bean-name>customerDetailsBean</managed-bean-name>
+        <managed-bean-class>ch.hearc.ig.odi.managedbeans.CustomerDetailsBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <managed-bean>
+        <description>Créer un compte</description>
+        <managed-bean-name>accountCreateBean</managed-bean-name>
+        <managed-bean-class>ch.hearc.ig.odi.managedbeans.AccountCreateBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <managed-bean>
+        <description>Détails d'un compte</description>
+        <managed-bean-name>accountDetailsBean</managed-bean-name>
+        <managed-bean-class>ch.hearc.ig.odi.managedbeans.AccountDetailsBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+</faces-config>

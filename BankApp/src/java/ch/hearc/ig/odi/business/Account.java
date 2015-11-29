@@ -1,119 +1,100 @@
 package ch.hearc.ig.odi.business;
 
+/**
+ * Classe Compte
+ *
+ * @author thoma
+ */
 public class Account {
 
-	Customer customer;
-	private String number;
-	private String name;
-	private double balance = 0;
-	private double rate = 0.01;
+    private Customer customer;
+    private String number;
+    private String name;
+    private double balance = 0;
+    private double rate = 0.001;
 
-	public String getNumber() {
-		return this.number;
-	}
+    /**
+     *
+     * @param number
+     * @param name
+     * @param rate
+     * @param customer
+     */
+    public Account(String number, String name, double rate, Customer customer) {
+        this.number = number;
+        this.name = name;
+        this.rate = rate;
+        this.customer = customer;
+    }
 
-	/**
-	 * 
-	 * @param number
-	 */
-	public void setNumber(String number) {
-		this.number = number;
-	}
+    /**
+     * Débiter le compte
+     *
+     * @param amount Montant
+     */
+    public void debit(double amount) {
+        this.balance = balance - amount;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    /**
+     * Crédite le compte
+     *
+     * @param amount Montant
+     */
+    public void credit(double amount) {
+        this.balance = balance + amount;
+    }
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * Cette méthode va permettre de transférer des fonds entre deux comptes
+     *
+     * @param amount Montant
+     * @param source Compte à débiter
+     * @param target Compte à créditer
+     */
+    public static void transfert(double amount, Account source, Account target) {
+        source.debit(amount);
+        target.credit(amount);
+    }
 
-	public double getBalance() {
-		return this.balance;
-	}
+    public String getNumber() {
+        return number;
+    }
 
-	/**
-	 * 
-	 * @param balance
-	 */
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
-	public double getRate() {
-		return this.rate;
-	}
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * 
-	 * @param rate
-	 */
-	public void setRate(double rate) {
-		this.rate = rate;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * 
-	 * @param number
-	 * @param name
-	 * @param rate
-	 * @param customer
-	 */
-	public Account(String number, String name, double rate, Customer customer) {
-		this.number = number;
-                this.name = name;
-                this.rate = rate;
-                this.customer = customer;
-	}
+    public double getBalance() {
+        return balance;
+    }
 
-	/**
-	 * 
-	 * @param amount
-	 */
-	public void credit(double amount) {
-            if (amount > 1) {
-                this.setBalance(this.getBalance() + amount);
-            } else {
-                System.out.println("erreur montant inférieur à 1");
-            }
-	}
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 
-	/**
-	 * 
-	 * @param amount
-	 */
-	public void debit(double amount) {
-            if (amount > 1) {
-                if (amount > this.getBalance()) {
-                    this.setBalance(this.getBalance() - amount);
-                } else {
-                    System.out.println("erreur montant supérieur au solde actuel");
-                }
-            } else {
-                System.out.println("erreur montant actuel inférieur a 1");
-            }
-	}
+    public double getRate() {
+        return rate;
+    }
 
-	/**
-	 * 
-	 * @param amount
-	 * @param source
-	 * @param target
-	 */
-	public static void transfert(double amount, Account source, Account target) {
-		if (amount > 1) {
-                if (amount > source.getBalance()) {
-                    source.debit(amount);
-                    target.credit(amount);
-                } else {
-                    System.out.println("erreur montant supérieur au solde actuel");
-                }
-            } else {
-                System.out.println("erreur montant actuel inférieur a 1");
-            }
-	}
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
 }
